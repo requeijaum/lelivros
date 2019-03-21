@@ -27,30 +27,63 @@ function getExtensionLinks() {
 }
 
 chrome.runtime.sendMessage({ request: "waiting" }, function (response) {
-  if (response.request == "getLinkFromAllPages") {
+  if (response.request == "getAllLinksFromCurrentPage") {
     let links = getPostLink();
-    links.forEach(link => {
-      chrome.runtime.sendMessage({ request: "link", link: link });
-    })
-
-    chrome.runtime.sendMessage({ request: "gotAllLinksFromCurrentPage" }, function (response) {
-      //go to next page then
-      if (response.request == "updatePage") {
-        window.location.href = response.url;
-      }
-      if (response.request == "downloadProcessStarted") {
+    chrome.runtime.sendMessage({ request: "gotAllLinksFromCurrentPage", links: links }, function (response) {
+      if (response.request == "updateUrl") {
         window.location.href = response.url;
       }
     });
-  }
 
+  }
   if (response.request == "downloadAllFormats") {
     let extensionsLinks = getExtensionLinks();
     chrome.runtime.sendMessage({ request: "openLinksInNewTab", links: extensionsLinks }, function (response) {
-      if (response.request == "updatePage") {
+      if (response.request == "updateUrl") {
         window.location.href = response.url;
       }
     });
   }
+})
 
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+// chrome.runtime.sendMessage({ request: "waiting" }, function (response) {
+//   if (response.request == "getAllLinksFromCurrentPage") {
+//     let links = getPostLink();
+//     links.forEach(link => {
+//       chrome.runtime.sendMessage({ request: "link", link: link });
+//     })
+
+//     chrome.runtime.sendMessage({ request: "gotAllLinksFromCurrentPage" }, function (response) {
+//       //go to next page then
+//       if (response.request == "updatePage") {
+//         window.location.href = response.url;
+//       }
+//       if (response.request == "downloadProcessStarted") {
+//         window.location.href = response.url;
+//       }
+//     });
+//   }
+
+//   if (response.request == "downloadAllFormats") {
+//     let extensionsLinks = getExtensionLinks();
+//     chrome.runtime.sendMessage({ request: "openLinksInNewTab", links: extensionsLinks }, function (response) {
+//       if (response.request == "updatePage") {
+//         window.location.href = response.url;
+//       }
+//     });
+//   }
+
+// });
