@@ -1,0 +1,29 @@
+{
+    "name": "Download all books",
+    "version": "1.0",
+    "manifest_version": 2,
+    "content_scripts": [
+        {
+            "matches": [
+                "http://lelivros.love/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_title": "Download all books"
+    },
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": false
+    },
+    "permissions": [
+        "tabs",
+        "storage"
+    ]
+}
