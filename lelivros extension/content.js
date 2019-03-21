@@ -1,4 +1,4 @@
-function getPostLink() {
+function getPostsLink() {
   let links = [];
   let posts = document.getElementsByClassName('post-17105');
   if (posts.length > 0) {
@@ -9,7 +9,7 @@ function getPostLink() {
   return links;
 }
 
-function getExtensionLinks() {
+function getExtensionsLink() {
   let extensionsLinks = [];
   let linksDownload = document.getElementsByClassName("links-download");
   if (linksDownload.length > 0) {
@@ -37,7 +37,7 @@ chrome.runtime.sendMessage({ request: "waiting" }, function (response) {
 
   }
   if (response.request == "downloadAllFormats") {
-    let extensionsLinks = getExtensionLinks();
+    let extensionsLinks = getExtensionsLink();
     chrome.runtime.sendMessage({ request: "openLinksInNewTab", links: extensionsLinks }, function (response) {
       if (response.request == "updateUrl") {
         window.location.href = response.url;
