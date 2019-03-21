@@ -1,4 +1,4 @@
-var pageCounter = 8;
+var pageCounter = 1;
 var linkCounter = 0;
 var defaultUrl = "http://lelivros.love/book/page/";
 var newUrl = "";
