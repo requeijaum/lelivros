@@ -5,6 +5,7 @@ var newUrl = "";
 var links = [];
 var totalPages = 623;
 var downloadProcessStarted = false;
+var buttonState = false;
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     if (message.request == "waiting") {
         if (downloadProcessStarted == false) {

@@ -5,7 +5,7 @@
     "content_scripts": [
         {
             "matches": [
-                "http://lelivros.love/*"
+                "https://*/*"
             ],
             "js": [
                 "content.js"
