@@ -28,7 +28,7 @@ function getExtensionsLink() {
 
 chrome.runtime.sendMessage({ request: "waiting" }, function (response) {
   if (response.request == "getAllLinksFromCurrentPage") {
-    let links = getPostLink();
+    let links = getPostsLink();
     chrome.runtime.sendMessage({ request: "gotAllLinksFromCurrentPage", links: links }, function (response) {
       if (response.request == "updateUrl") {
         window.location.href = response.url;
